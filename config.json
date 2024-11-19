@@ -1,0 +1,679 @@
+// singbox 配置
+// 日期：2024-09-19 04:00:00
+// 配置作者：???
+// 适用版本：所有使用 singbox 原版核心的程序
+{
+  "log": { "disabled": false, "level": "info", "timestamp": true },
+  "dns": {
+    "servers": [
+      // { "tag": "dns_block", "address": "rcode://success", "address_resolver": "dns_resolver" },
+      { "tag": "dns_direct", "address": "h3://223.5.5.5/dns-query", "address_resolver": "dns_resolver", "detour": "🎯 本机直连" },
+      { "tag": "dns_proxy", "address": "tls://9.9.9.11", "address_resolver": "dns_resolver" },
+      { "tag": "dns_resolver", "address": "114.114.114.114", "strategy": "ipv4_only", "detour": "🎯 本机直连" },
+      { "tag": "dns_fakeip", "address": "fakeip" }
+    ],
+    "rules": [
+      // { "domain_suffix": [ "ghproxy.com", "jsdelivr.net" ], "server": "dns_proxy" },
+      { "rule_set": [ "geosite_googlefcm_MetaCubeX" ], "server": "dns_direct" },
+      { "outbound": "any", "server": "dns_direct", "disable_cache": false },
+      { "clash_mode": "Direct", "query_type": [ "A", "AAAA" ], "server": "dns_direct" },
+      { "clash_mode": "Global", "query_type": [ "A", "AAAA" ], "server": "dns_proxy" },
+      // { "rule_set": [ "geosite_category-ads-all_MetaCubeX", "geosite_category-httpdns-cn_MetaCubeX", "ads_DustinWin" ], "server": "dns_block" },
+      { "rule_set": [ "geosite_geolocation-!cn_MetaCubeX", "geosite_google_MetaCubeX" ], "query_type": [ "A", "AAAA" ], "server": "dns_fakeip", "rewrite_ttl": 0 },
+      { "rule_set": [ "geosite_cn_MetaCubeX", "geosite_private_MetaCubeX", "geosite_microsoft@cn_MetaCubeX", "geosite_onedrive_MetaCubeX", "geosite_category-companies@cn_MetaCubeX", "geosite_category-ntp_MetaCubeX", "geosite_steam@cn_MetaCubeX", "geosite_category-entertainment@cn_MetaCubeX", "geosite_category-enhance-gaming@cn_MetaCubeX", "geosite_category-games@cn_MetaCubeX" ], "query_type": [ "A", "AAAA" ], "server": "dns_direct" }
+    ],
+    "final": "dns_proxy",                    // 默认 DNS 服务器的标签。默认使用第一个服务器。
+    "strategy": "prefer_ipv4",               // 默认解析域名策略。可选值: prefer_ipv4 prefer_ipv6 ipv4_only ipv6_only。如果设置了 server.strategy，则不生效。
+    "disable_cache": false,                  // 禁用 DNS 缓存。
+    "disable_expire": false,                 // 禁用 DNS 缓存过期。
+    "independent_cache": false,              // 使每个 DNS 服务器的缓存独立，以满足特殊目的。如果启用，将轻微降低性能。
+    "reverse_mapping": true,                 // 在响应 DNS 查询后存储 IP 地址的反向映射以为路由目的提供域名。由于此过程依赖于应用程序在发出请求之前解析域名的行为，因此在 macOS 等 DNS 由系统代理和缓存的环境中可能会出现问题。
+    // "client_subnet": "",                  // 自 sing-box 1.9.0 起默认情况下，将带有指定 IP 前缀的 edns0-subnet OPT 附加记录附加到每个查询。如果值是 IP 地址而不是前缀，则会自动附加 /32 或 /128。可以被 servers.[].client_subnet 或 rules.[].client_subnet 覆盖。
+    "fakeip": { "enabled": true, "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/18" }
+  },
+  "inbounds": [
+    { "tag": "tun-in", "type": "tun", "interface_name": "tun0", "inet4_address": [ "172.18.0.1/30" ], "inet6_address": [ "fdfe:dcba:9876::1/126" ], "gso": true, "auto_route": true, "strict_route": true, "stack": "mixed", "platform": { "http_proxy": { "enabled": true, "server": "0.0.0.0", "server_port": 1082 } }, "udp_timeout": "5m", "sniff": true, "sniff_override_destination": true, "domain_strategy": "prefer_ipv4" },
+    { "tag": "mixed-in", "type": "mixed", "listen": "::", "listen_port": 1082, "users": [] }, { "type": "socks", "tag": "socks-in", "listen": "::", "listen_port": 7888, "sniff": true, "sniff_override_destination": true, "domain_strategy": "prefer_ipv4" },
+    // 配置 shadowsocks 入站，即创建 shadowsocks 代理
+    { "tag":"ss-in", "type": "shadowsocks", "listen": "::", "listen_port": 10001, "method": "2022-blake3-aes-256-gcm", "password": "vlmpIPSyHH6f4S8WVPdRIHIlzmB+GIRfoH3aNJ/t9Gg=" }
+  ],
+  "outbounds": [
+    { "tag": "🚀 策略选择", "type": "selector", "interrupt_exist_connections": false, "outbounds": [ "♻️ 自动节点", "🎯 本机直连", "🔑 手选节点①", "🔑 手选节点②", "❌ 禁止连接" ] },
+    // 节点名称修改区域 \\
+    { "tag": "♻️ 自动节点", "type": "urltest", "tolerance": 50, "url": "https://www.google.com/generate_204", "outbounds": [ "🏁RELAY-104.19.45.50-0340", "🏁RELAY-172.64.99.32-0350", "🏁RELAY-104.26.7.132-0346", "🇺🇸_US_美国->🇺🇦_UA_乌克兰", "🔒 VL-WS-NONE 🏴‍☠️ NA-162.159.60.173:2052", "美国【付费推荐：https://a0a.xyz】38", "🏁RELAY-104.19.46.39-0378", "🏁RELAY-104.19.38.88-0293", "🏁RELAY-104.18.57.121-1238", "🏁RELAY-104.20.25.146-0340" ] },
+    { "tag": "🏠 家庭节点", "type": "selector", "outbounds": [ "🎯 本机直连", "shadowsocks-home-v4", "shadowsocks-home-v6", "wg-home-v4", "wg-home-v6" ] },
+    { "tag": "🔑 手选节点①", "type": "selector", "outbounds": [ "🏁RELAY-104.19.45.50-0340", "🏁RELAY-172.64.99.32-0350", "🏁RELAY-104.26.7.132-0346", "🇺🇸_US_美国->🇺🇦_UA_乌克兰", "🔒 VL-WS-NONE 🏴‍☠️ NA-162.159.60.173:2052", "美国【付费推荐：https://a0a.xyz】38", "🏁RELAY-104.19.46.39-0378", "🏁RELAY-104.19.38.88-0293", "🏁RELAY-104.18.57.121-1238", "🏁RELAY-104.20.25.146-0340" ] },
+    { "tag": "🔑 手选节点②", "type": "selector", "outbounds": [ "🏁RELAY-104.19.45.50-0340", "🏁RELAY-172.64.99.32-0350", "🏁RELAY-104.26.7.132-0346", "🇺🇸_US_美国->🇺🇦_UA_乌克兰", "🔒 VL-WS-NONE 🏴‍☠️ NA-162.159.60.173:2052", "美国【付费推荐：https://a0a.xyz】38", "🏁RELAY-104.19.46.39-0378", "🏁RELAY-104.19.38.88-0293", "🏁RELAY-104.18.57.121-1238", "🏁RELAY-104.20.25.146-0340" ] },
+    { "tag": "🛑 广告拦截", "type": "selector", "outbounds": [ "❌ 禁止连接", "🎯 本机直连" ] },
+    // { "tag": "🍃 应用净化", "type": "selector", "outbounds": [ "❌ 禁止连接", "🎯 本机直连" ] },
+    { "tag": "🎮 游戏平台", "type": "selector", "outbounds": [ "🎯 本机直连", "♻️ 自动节点", "🔑 手选节点①", "🔑 手选节点②" ] },
+    { "tag": "🤖 人工智能", "type": "selector", "outbounds": [ "🚀 策略选择", "♻️ 自动节点", "🔑 手选节点①", "🔑 手选节点②", "🏁RELAY-104.19.45.50-0340", "🏁RELAY-172.64.99.32-0350", "🏁RELAY-104.26.7.132-0346", "🇺🇸_US_美国->🇺🇦_UA_乌克兰", "🔒 VL-WS-NONE 🏴‍☠️ NA-162.159.60.173:2052", "美国【付费推荐：https://a0a.xyz】38", "🏁RELAY-104.19.46.39-0378", "🏁RELAY-104.19.38.88-0293", "🏁RELAY-104.18.57.121-1238", "🏁RELAY-104.20.25.146-0340" ] },
+    { "tag": "🎥 NetFlix", "type": "selector", "outbounds": [ "🚀 策略选择", "♻️ 自动节点", "🏁RELAY-104.19.45.50-0340", "🏁RELAY-172.64.99.32-0350", "🏁RELAY-104.26.7.132-0346", "🇺🇸_US_美国->🇺🇦_UA_乌克兰", "🔒 VL-WS-NONE 🏴‍☠️ NA-162.159.60.173:2052", "美国【付费推荐：https://a0a.xyz】38", "🏁RELAY-104.19.46.39-0378", "🏁RELAY-104.19.38.88-0293", "🏁RELAY-104.18.57.121-1238", "🏁RELAY-104.20.25.146-0340" ] },
+    { "tag": "🎶 Spotify", "type": "selector", "outbounds": [ "🚀 策略选择", "♻️ 自动节点", "🏁RELAY-104.19.45.50-0340", "🏁RELAY-172.64.99.32-0350", "🏁RELAY-104.26.7.132-0346", "🇺🇸_US_美国->🇺🇦_UA_乌克兰", "🔒 VL-WS-NONE 🏴‍☠️ NA-162.159.60.173:2052", "美国【付费推荐：https://a0a.xyz】38", "🏁RELAY-104.19.46.39-0378", "🏁RELAY-104.19.38.88-0293", "🏁RELAY-104.18.57.121-1238", "🏁RELAY-104.20.25.146-0340" ] },
+    { "tag": "📷 TikTok", "type": "selector", "outbounds": [ "🚀 策略选择", "♻️ 自动节点", "🏁RELAY-104.19.45.50-0340", "🏁RELAY-172.64.99.32-0350", "🏁RELAY-104.26.7.132-0346", "🇺🇸_US_美国->🇺🇦_UA_乌克兰", "🔒 VL-WS-NONE 🏴‍☠️ NA-162.159.60.173:2052", "美国【付费推荐：https://a0a.xyz】38", "🏁RELAY-104.19.46.39-0378", "🏁RELAY-104.19.38.88-0293", "🏁RELAY-104.18.57.121-1238", "🏁RELAY-104.20.25.146-0340" ] },
+    { "tag": "📢 谷歌FCM", "type": "selector", "outbounds": [ "🎯 本机直连", "🚀 策略选择", "♻️ 自动节点", "🔑 手选节点①", "🔑 手选节点②" ] },
+    { "tag": "💫 微信FCM", "type": "selector", "outbounds": [ "🚀 策略选择", "♻️ 自动节点", "🎯 本机直连", "🏁RELAY-104.19.45.50-0340", "🏁RELAY-172.64.99.32-0350", "🏁RELAY-104.26.7.132-0346", "🇺🇸_US_美国->🇺🇦_UA_乌克兰", "🔒 VL-WS-NONE 🏴‍☠️ NA-162.159.60.173:2052", "美国【付费推荐：https://a0a.xyz】38", "🏁RELAY-104.19.46.39-0378", "🏁RELAY-104.19.38.88-0293", "🏁RELAY-104.18.57.121-1238", "🏁RELAY-104.20.25.146-0340" ] },
+    { "tag": "🚩 多国服务", "type": "selector", "outbounds": [ "🎯 本机直连", "🚀 策略选择", "♻️ 自动节点", "🏁RELAY-104.19.45.50-0340", "🏁RELAY-172.64.99.32-0350", "🏁RELAY-104.26.7.132-0346", "🇺🇸_US_美国->🇺🇦_UA_乌克兰", "🔒 VL-WS-NONE 🏴‍☠️ NA-162.159.60.173:2052", "美国【付费推荐：https://a0a.xyz】38", "🏁RELAY-104.19.46.39-0378", "🏁RELAY-104.19.38.88-0293", "🏁RELAY-104.18.57.121-1238", "🏁RELAY-104.20.25.146-0340" ] },
+    { "tag": "🏳️‍🌈 国外服务", "type": "selector", "outbounds": [ "🚀 策略选择", "♻️ 自动节点", "🏁RELAY-104.19.45.50-0340", "🏁RELAY-172.64.99.32-0350", "🏁RELAY-104.26.7.132-0346", "🇺🇸_US_美国->🇺🇦_UA_乌克兰", "🔒 VL-WS-NONE 🏴‍☠️ NA-162.159.60.173:2052", "美国【付费推荐：https://a0a.xyz】38", "🏁RELAY-104.19.46.39-0378", "🏁RELAY-104.19.38.88-0293", "🏁RELAY-104.18.57.121-1238", "🏁RELAY-104.20.25.146-0340", "🎯 本机直连" ] },
+    { "tag": "🌏 国内媒体", "type": "selector", "outbounds": [ "🎯 本机直连", "🚀 策略选择", "♻️ 自动节点", "🏁RELAY-104.19.45.50-0340", "🏁RELAY-172.64.99.32-0350", "🏁RELAY-104.26.7.132-0346", "🇺🇸_US_美国->🇺🇦_UA_乌克兰", "🔒 VL-WS-NONE 🏴‍☠️ NA-162.159.60.173:2052", "美国【付费推荐：https://a0a.xyz】38", "🏁RELAY-104.19.46.39-0378", "🏁RELAY-104.19.38.88-0293", "🏁RELAY-104.18.57.121-1238", "🏁RELAY-104.20.25.146-0340" ] },
+    { "tag": "🌍 国外媒体", "type": "selector", "outbounds": [ "🚀 策略选择", "♻️ 自动节点", "🏁RELAY-104.19.45.50-0340", "🏁RELAY-172.64.99.32-0350", "🏁RELAY-104.26.7.132-0346", "🇺🇸_US_美国->🇺🇦_UA_乌克兰", "🔒 VL-WS-NONE 🏴‍☠️ NA-162.159.60.173:2052", "美国【付费推荐：https://a0a.xyz】38", "🏁RELAY-104.19.46.39-0378", "🏁RELAY-104.19.38.88-0293", "🏁RELAY-104.18.57.121-1238", "🏁RELAY-104.20.25.146-0340", "🎯 本机直连" ] },
+    { "tag": "🐟 漏网之鱼", "type": "selector", "outbounds": [ "🚀 策略选择", "♻️ 自动节点", "🔑 手选节点①", "🔑 手选节点②", "🎯 本机直连" ] },
+    { "tag": "🎯 全球直连", "type": "selector", "outbounds": [ "🎯 本机直连", "🚀 策略选择" ] },
+    { "tag": "❌ 禁止连接", "type": "block" },
+    { "tag": "🎯 本机直连", "type": "direct" },
+    { "tag": "🌐 全局策略", "type": "selector", "outbounds": [ "♻️ 自动节点", "🔑 手选节点①", "🔑 手选节点②", "🎯 本机直连", "❌ 禁止连接", "🏁RELAY-104.19.45.50-0340", "🏁RELAY-172.64.99.32-0350", "🏁RELAY-104.26.7.132-0346", "🇺🇸_US_美国->🇺🇦_UA_乌克兰", "🔒 VL-WS-NONE 🏴‍☠️ NA-162.159.60.173:2052", "美国【付费推荐：https://a0a.xyz】38", "🏁RELAY-104.19.46.39-0378", "🏁RELAY-104.19.38.88-0293", "🏁RELAY-104.18.57.121-1238", "🏁RELAY-104.20.25.146-0340" ] },
+    // 节点名称修改区域 \\
+    { "tag": "dns-out", "type": "dns" },
+    // 节点信息填充区域 \\
+    // 客户端启用。wireguard 节点，配合 rule-set 可实现连接家庭路由并代理上网，server 填写服务端的公网 IP 地址或 DDNS 域名，其他参数参考对端设置
+    { "tag": "wg-home-v4", "type": "wireguard", "server": "v4.richone.top", "server_port": 51820, "interface_name": "wg0", "local_address": [ "192.168.10.10/32", "fd99:d525:d8a9:bcf2:a09b:f55:8708:6f07/128" ], "private_key": "ePvPYblhtbYCp5GsSVgIDSOIyDo82LoKpPtTef+0WE0=", "peer_public_key": "u9FyvK+0JYrZcFluRcriGzEmTawefWex7XaAWuX6Bzk=", "pre_shared_key": "z4y86CQP4NtiYBzxMIXs+pANy031vgRgJNnl8RcEX4I=" },
+    { "tag": "wg-home-v6", "type": "wireguard", "server": "v6.richone.top", "server_port": 51820, "interface_name": "wg0", "local_address": [ "192.168.10.10/32", "fd99:d525:d8a9:bcf2:a09b:f55:8708:6f07/128" ], "private_key": "ePvPYblhtbYCp5GsSVgIDSOIyDo82LoKpPtTef+0WE0=", "peer_public_key": "u9FyvK+0JYrZcFluRcriGzEmTawefWex7XaAWuX6Bzk=", "pre_shared_key": "z4y86CQP4NtiYBzxMIXs+pANy031vgRgJNnl8RcEX4I=" },
+    // 客户端启用。inbounds 中创建的 shadowsocks 节点，配合 rules 可实现连接家庭路由并代理上网，server 填写服务端的公网 IP 地址或 DDNS 域名，其他参数参考对端设置
+    { "tag": "shadowsocks-home-v4", "type": "shadowsocks", "server": "服务端的公网 IPv4 地址或 DDNS 域名", "server_port": 10001, "method": "2022-blake3-aes-256-gcm", "password": "vlmpIPSyHH6f4S8WVPdRIHIlzmB+GIRfoH3aNJ/t9Gg=", "udp_over_tcp": { "enabled": true, "version": 2 } },
+    { "tag": "shadowsocks-home-v6", "type": "shadowsocks", "server": "服务端的公网 IPv6 地址或 DDNS 域名", "server_port": 10001, "method": "2022-blake3-aes-256-gcm", "password": "vlmpIPSyHH6f4S8WVPdRIHIlzmB+GIRfoH3aNJ/t9Gg=", "udp_over_tcp": { "enabled": true, "version": 2 } },
+    { "tag": "🏁RELAY-104.19.45.50-0340", "server": "104.19.45.50", "server_port": 2086, "transport": { "path": "github.com/Alvin9999", "type": "ws", "max_early_data": 2048, "early_data_header_name": "Sec-WebSocket-Protocol" }, "uuid": "e9e3cc13-db48-4cc1-8c24-7626439a5339", "packet_encoding": "xudp", "security": "auto", "alter_id": 0, "type": "vmess" },
+    { "tag": "🏁RELAY-172.64.99.32-0350", "server": "172.64.99.32", "server_port": 2052, "transport": { "path": "github.com/Alvin9999", "type": "ws", "max_early_data": 2048, "early_data_header_name": "Sec-WebSocket-Protocol" }, "uuid": "d6b6d982-d52f-465a-b988-85670b23f64a", "packet_encoding": "xudp", "security": "auto", "alter_id": 0, "type": "vmess" },
+    { "tag": "🏁RELAY-104.26.7.132-0346", "server": "104.26.7.132", "server_port": 2086, "transport": { "path": "github.com/Alvin9999", "type": "ws", "max_early_data": 2048, "early_data_header_name": "Sec-WebSocket-Protocol" }, "uuid": "e9e3cc13-db48-4cc1-8c24-7626439a5339", "packet_encoding": "xudp", "security": "auto", "alter_id": 0, "type": "vmess" },
+    { "tag": "🇺🇸_US_美国->🇺🇦_UA_乌克兰", "server": "104.19.46.42", "server_port": 2086, "transport": { "path": "github.com/Alvin9999", "type": "ws", "max_early_data": 2048, "early_data_header_name": "Sec-WebSocket-Protocol" }, "uuid": "e9e3cc13-db48-4cc1-8c24-7626439a5339", "packet_encoding": "xudp", "security": "auto", "alter_id": 0, "type": "vmess"  },
+    { "tag": "🔒 VL-WS-NONE 🏴‍☠️ NA-162.159.60.173:2052", "server": "162.159.60.173", "server_port": 2052, "tls": { "enabled": true, "server_name": "UuOxTfVv21.eJaZeMaDaStE-KhOdScH.OrG" }, "transport": { "path": "/", "type": "ws", "max_early_data": 4096, "early_data_header_name": "Sec-WebSocket-Protocol" }, "uuid": "416f18ec-11f3-4648-9693-8c6480d0662d", "type": "vless"  },
+    { "tag": "美国【付费推荐：https://a0a.xyz】38", "server": "104.26.5.88", "server_port": 2086, "transport": { "path": "github.com/Alvin9999", "type": "ws", "max_early_data": 2048, "early_data_header_name": "Sec-WebSocket-Protocol" }, "uuid": "e9e3cc13-db48-4cc1-8c24-7626439a5339", "packet_encoding": "xudp", "security": "auto", "alter_id": 0, "type": "vmess"  },
+    { "tag": "🏁RELAY-104.19.46.39-0378", "server": "104.19.46.39", "server_port": 2086, "transport": { "path": "github.com/Alvin9999", "type": "ws", "max_early_data": 2048, "early_data_header_name": "Sec-WebSocket-Protocol" }, "uuid": "e9e3cc13-db48-4cc1-8c24-7626439a5339", "packet_encoding": "xudp", "security": "auto", "alter_id": 0, "type": "vmess"  },
+    { "tag": "🏁RELAY-104.19.38.88-0293", "server": "104.19.38.88", "server_port": 2086, "transport": { "path": "github.com/Alvin9999", "type": "ws", "max_early_data": 2048, "early_data_header_name": "Sec-WebSocket-Protocol" }, "uuid": "e9e3cc13-db48-4cc1-8c24-7626439a5339", "packet_encoding": "xudp", "security": "auto", "alter_id": 0, "type": "vmess"  },
+    { "tag": "🏁RELAY-104.18.57.121-1238", "server": "104.18.57.121", "server_port": 2052, "transport": { "path": "github.com/Alvin9999", "type": "ws", "max_early_data": 2048, "early_data_header_name": "Sec-WebSocket-Protocol" }, "uuid": "d6b6d982-d52f-465a-b988-85670b23f64a", "packet_encoding": "xudp", "security": "auto", "alter_id": 0, "type": "vmess"  },
+    { "tag": "🏁RELAY-104.20.25.146-0340", "server": "104.20.25.146", "server_port": 2052, "transport": { "path": "github.com/Alvin9999", "type": "ws", "max_early_data": 2048, "early_data_header_name": "Sec-WebSocket-Protocol" }, "uuid": "d6b6d982-d52f-465a-b988-85670b23f64a", "packet_encoding": "xudp", "security": "auto", "alter_id": 0, "type": "vmess" }
+    // 节点信息填充区域  \\
+  ],
+  "route": {
+    "geoip": {
+      "download_url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.db"
+    },
+    "geosite": {
+      "download_url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.db"
+    },
+    "rules": [
+      { "protocol": [ "dns" ], "outbound": "dns-out" },
+      // 客户端启用。连接家庭路由并代理上网，自行修改为家庭局域网 IP 网段，shadowsocks-home-v6 为 outbounds 中的回家节点名称，可对应修改
+      { "ip_cidr": [ "192.168.0.0/16" ], "outbound": "🏠 家庭节点" },
+      { "clash_mode": "Direct", "outbound": "🎯 本机直连" },
+      { "clash_mode": "Global", "outbound": "🌐 全局策略" },
+      { "rule_set": [ "geosite_googlefcm_MetaCubeX" ], "outbound": "📢 谷歌FCM" },
+      { "domain_keyword": [ "extshort.weixin.qq.com", "long.weixin.qq.com", "dns.weixin.qq.com" ], "network": [ "tcp" ], "port": [ 80, 8080, 443 ], "outbound": "💫 微信FCM" },
+      { "domain_keyword": [ "short.weixin.qq.com" ], "outbound": "🎯 全球直连" },
+      { "package_name": [ "com.microsoft.office.outlook" ], "port": [ 443 ], "outbound": "🏳️‍🌈 国外服务" },
+      { "rule_set": [ "geoip_private_MetaCubeX", "geosite_private_MetaCubeX" ], "outbound": "🎯 全球直连" },
+      { "rule_set": [ "geosite_category-ads-all_MetaCubeX", "geosite_category-httpdns-cn_MetaCubeX", "ads_DustinWin" ], "outbound": "🛑 广告拦截" },
+      { "domain_regex": "^stun\\..+", "outbound": "🛑 广告拦截" },
+      { "domain_keyword": [ "stun", "httpdns" ], "outbound": "🛑 广告拦截" },
+      { "protocol": "stun", "outbound": "🛑 广告拦截" },
+      { "domain_suffix": [ "adfstat.yandex.ru", "appmetrica.yandex.ru", "getsentry.com", "sentry-cdn.com" ], "outbound": "🛑 广告拦截" },
+      { "domain_suffix": [ "xcz.im", "ads.fmdisk.com", "ads.feemoo.com", "ads.google.com", "afd.l.google.com", "mobileads.google.com" ], "outbound": "🛑 广告拦截" },
+      { "domain_keyword": [ "googleads", "umeng" ], "outbound": "🛑 广告拦截" },
+      { "rule_set": [ "applications_DustinWin" ], "outbound": "🎯 全球直连" },
+      { "domain_suffix": [ "o33249.ingest.sentry.io", "openaicom.imgix.net" ], "outbound": "❌ 禁止连接" },
+      { "package_name": [ "com.tencent.mm" ], "outbound": "🎯 全球直连" },
+      { "rule_set": [ "geosite_bilibili@cn_MetaCubeX", "geosite_iqiyi_MetaCubeX", "geosite_youku_MetaCubeX" ], "outbound": "🌏 国内媒体" },
+      { "rule_set": [ "geosite_alibaba_MetaCubeX", "geosite_baidu_MetaCubeX", "geosite_chinabroadnet_MetaCubeX", "geosite_chinamobile_MetaCubeX", "geosite_chinapower_MetaCubeX", "geosite_chinatelecom_MetaCubeX", "geosite_chinaunicom_MetaCubeX", "geosite_coolapk_MetaCubeX", "geosite_douban_MetaCubeX", "geosite_jd_MetaCubeX", "geosite_meituan_MetaCubeX", "geosite_netease_MetaCubeX", "geosite_pinduoduo_MetaCubeX", "geosite_sina_MetaCubeX", "geosite_smzdm_MetaCubeX", "geosite_sogou_MetaCubeX" ], "outbound": "🎯 全球直连" },
+      { "rule_set": [ "geosite_tencent_MetaCubeX", "geosite_unionpay_MetaCubeX", "geosite_xiaohongshu_MetaCubeX", "geosite_51job_MetaCubeX", "geosite_zhihu_MetaCubeX", "geosite_category-bank-cn_MetaCubeX", "geosite_category-enterprise-query-platform-cn_MetaCubeX", "geosite_category-game-accelerator-cn_MetaCubeX", "geosite_category-media-cn_MetaCubeX", "geosite_category-netdisk-cn_MetaCubeX", "geosite_category-social-media-cn_MetaCubeX" ], "outbound": "🎯 全球直连" },
+      { "rule_set": [ "geosite_tracker_MetaCubeX", "geosite_category-pt_MetaCubeX", "geosite_category-public-tracker_MetaCubeX" ], "outbound": "🎯 全球直连" },
+      { "rule_set": [ "ai_DustinWin" ], "outbound": "🤖 人工智能" },
+      { "rule_set": [ "geosite_openai_MetaCubeX" ], "outbound": "🤖 人工智能" },
+      // { "rule_set": [ "geoip_netflix_MetaCubeX", "geosite_netflix_MetaCubeX" ], "outbound": "🎥 NetFlix" },
+      { "rule_set": [ "netflixip_DustinWin", "netflix_DustinWin" ], "outbound": "🎥 NetFlix" },
+      { "rule_set": [ "geosite_spotify_MetaCubeX" ], "outbound": "🎶 Spotify" },
+      { "rule_set": [ "geosite_tiktok_MetaCubeX" ], "outbound": "📷 TikTok" },
+      { "rule_set": [ "geosite_youtube_MetaCubeX" ], "outbound": "🌍 国外媒体" },
+      { "rule_set": [ "geosite_steam@cn_MetaCubeX", "geosite_category-entertainment@cn_MetaCubeX", "geosite_category-enhance-gaming@cn_MetaCubeX", "geosite_category-games@cn_MetaCubeX" ], "outbound": "🎮 游戏平台" },
+      { "rule_set": [ "geoip_google_MetaCubeX", "geosite_google_MetaCubeX" ], "outbound": "🏳️‍🌈 国外服务" },
+      // { "rule_set": [ "geoip_telegram_MetaCubeX" ], "outbound": "🏳️‍🌈 国外服务" },
+      { "rule_set": [ "telegramip_DustinWin", "geosite_telegram_MetaCubeX" ], "outbound": "🏳️‍🌈 国外服务" },
+      { "rule_set": [ "geoip_twitter_MetaCubeX", "geosite_twitter_MetaCubeX" ], "outbound": "🏳️‍🌈 国外服务" },
+      { "rule_set": [ "geosite_biliintl_MetaCubeX", "geosite_facebook_MetaCubeX", "geosite_github_MetaCubeX", "geosite_pixiv_MetaCubeX"], "outbound": "🏳️‍🌈 国外服务" },
+      { "type": "logical", "mode": "and", "rules": [ { "rule_set": "geosite_bing_MetaCubeX"}, { "rule_set": "geosite_bing@cn_MetaCubeX", "invert": true  }], "invert": false, "outbound": "🏳️‍🌈 国外服务" },
+      { "type": "logical", "mode": "and", "rules": [ { "rule_set": "geosite_microsoft_MetaCubeX"}, { "rule_set": "geosite_microsoft@cn_MetaCubeX", "invert": true  }], "invert": false, "outbound": "🏳️‍🌈 国外服务" },
+      { "rule_set": [ "geosite_apple-cn_MetaCubeX", "geosite_bing@cn_MetaCubeX", "geosite_microsoft@cn_MetaCubeX", "geosite_onedrive_MetaCubeX", "geosite_category-companies@cn_MetaCubeX", "geosite_category-ntp_MetaCubeX" ], "outbound": "🚩 多国服务" },
+      { "rule_set": [ "geoip_cn_MetaCubeX", "geosite_cn_MetaCubeX" ], "outbound": "🎯 全球直连" },
+    ],
+    "rule_set": [
+      {
+        "tag": "ads_DustinWin",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/DustinWin/ruleset_geodata@sing-box-ruleset/ads.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "ai_DustinWin",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/DustinWin/ruleset_geodata@sing-box-ruleset/ai.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "applications_DustinWin",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/DustinWin/ruleset_geodata@sing-box-ruleset/applications.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "fakeip-filter_DustinWin",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/DustinWin/ruleset_geodata@sing-box-ruleset/fakeip-filter.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "netflix_DustinWin",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/DustinWin/ruleset_geodata@sing-box-ruleset/netflix.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "netflixip_DustinWin",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/DustinWin/ruleset_geodata@sing-box-ruleset/netflixip.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "telegramip_DustinWin",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/DustinWin/ruleset_geodata@sing-box-ruleset/telegramip.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_category-ads-all_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ads-all.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_category-httpdns-cn_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-httpdns-cn.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_cn_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_geolocation-!cn_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_private_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/private.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geoip_cn_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/cn.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geoip_private_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/private.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_apple-cn_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/apple-cn.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_alibaba_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/alibaba.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_baidu_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/baidu.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_bilibili@cn_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/bilibili@cn.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_biliintl_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/biliintl.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_bing_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/bing.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_bing@cn_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/bing@cn.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_category-bank-cn_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-bank-cn.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_category-companies@cn_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-companies@cn.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_category-enhance-gaming@cn_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-enhance-gaming@cn.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_category-enterprise-query-platform-cn_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-enterprise-query-platform-cn.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_category-entertainment@cn_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-entertainment@cn.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_category-game-accelerator-cn_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-game-accelerator-cn.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_category-games@cn_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-games@cn.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_category-media-cn_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-media-cn.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_category-netdisk-cn_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-netdisk-cn.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_category-ntp_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ntp.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_category-pt_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-pt.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_category-public-tracker_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-public-tracker.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_category-social-media-cn_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-social-media-cn.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_chinabroadnet_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/chinabroadnet.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_chinamobile_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/chinamobile.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_chinapower_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/chinapower.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_chinatelecom_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/chinatelecom.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_chinaunicom_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/chinaunicom.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_coolapk_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/coolapk.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_douban_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/douban.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_facebook_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/facebook.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_github_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/github.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_google_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/google.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_googlefcm_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/googlefcm.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_iqiyi_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/iqiyi.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_jd_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/jd.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_meituan_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/meituan.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_microsoft_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/microsoft@cn.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_microsoft@cn_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/microsoft@cn.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_netease_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/netease.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      // {
+      //   "tag": "geosite_netflix_MetaCubeX",
+      //   "type": "remote",
+      //   "format": "binary",
+      //   "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/netflix.srs",
+      //   "download_detour": "🎯 本机直连"
+      // },
+      {
+        "tag": "geosite_onedrive_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/onedrive.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_openai_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/openai.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_pinduoduo_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/pinduoduo.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_pixiv_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/pixiv.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_sina_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/sina.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_smzdm_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/smzdm.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_sogou_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/sogou.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_spotify_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/spotify.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_steam@cn_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/steam@cn.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_telegram_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/telegram.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_tencent_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/tencent.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_tiktok_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/tiktok.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_tracker_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/tracker.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_twitter_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/twitter.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_unionpay_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/unionpay.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_xiaohongshu_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/xiaohongshu.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_youku_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/youku.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_youtube_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/youtube.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_51job_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/51job.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geosite_zhihu_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/zhihu.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      {
+        "tag": "geoip_google_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/google.srs",
+        "download_detour": "🎯 本机直连"
+      },
+      // {
+      //   "tag": "geoip_netflix_MetaCubeX",
+      //   "type": "remote",
+      //   "format": "binary",
+      //   "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/netflix.srs",
+      //   "download_detour": "🎯 本机直连"
+      // },
+      // {
+      //   "tag": "geoip_telegram_MetaCubeX",
+      //   "type": "remote",
+      //   "format": "binary",
+      //   "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/telegram.srs",
+      //   "download_detour": "🎯 本机直连"
+      // },
+      {
+        "tag": "geoip_twitter_MetaCubeX",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/twitter.srs",
+        "download_detour": "🎯 本机直连"
+      }
+    ],
+    "final": "🐟 漏网之鱼",                       // 默认出站标签。如果为空，将使用第一个可用于对应协议的出站。
+    "auto_detect_interface": true,                // 仅支持 Linux、Windows 和 macOS。默认将出站连接绑定到默认网卡，以防止在 tun 下出现路由环路。如果设置了 outbound.bind_interface 设置，则不生效。
+    "override_android_vpn": true                 // 仅支持 Android。启用 auto_detect_interface 时接受 Android VPN 作为上游网卡。
+    // "udp_disable_domain_unmapping": false        // 如果启用，对于地址为域的 UDP 代理请求，将在响应中发送原始包地址而不是映射的域。此选项用于兼容不支持接收带有域地址的 UDP 包的客户端，如 Surge。
+  },
+  "experimental": {
+    "cache_file": { "enabled": true, "path": "cache.db" },
+    "clash_api": { "external_controller": "0.0.0.0:9090", "secret": "", "external_ui": "ui", "external_ui_download_url": "https://mirror.ghproxy.com/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip", "external_ui_download_detour": "🎯 本机直连", "default_mode": "Rule" }
+  }
+}
