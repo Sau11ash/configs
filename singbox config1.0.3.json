@@ -24,9 +24,9 @@
    {
      "servers": 
      [
-       {"tag": "dns_public", "address": "119.29.29.29", "strategy": "ipv4_only", "client_subnet": "113.121.248.1", "detour": "🎯 全球直连"},
-       {"tag": "dns_direct", "address": "219.146.1.66", "strategy": "ipv4_only", "client_subnet": "113.121.248.1", "detour": "🎯 全球直连"},
-       {"tag": "dns_proxy", "address": "tls://1.1.1.1", "strategy": "ipv4_only", "client_subnet": "113.121.248.1", "detour": "🚀 节点选择"}
+       {"tag": "dns_public", "address": "61.128.128.68", "strategy": "ipv4_only", "client_subnet": "10.6.185.231", "detour": "🎯 全球直连"},
+       {"tag": "dns_direct", "address": "61.128.128.68", "strategy": "ipv4_only", "client_subnet": "10.6.185.231", "detour": "🎯 全球直连"},
+       {"tag": "dns_proxy", "address": "tls://1.1.1.1", "strategy": "ipv4_only", "client_subnet": "10.6.185.231", "detour": "🚀 节点选择"}
      ],
      "rules": 
      [
