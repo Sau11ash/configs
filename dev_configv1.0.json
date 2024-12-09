@@ -67,12 +67,12 @@
   ],
   
     "outbounds": [
-      { "tag": "🚀 节点选择", "type": "selector", "outbounds": ["🇭🇰 香港延迟优选", "🇹🇼 台湾延迟优选", "🇺🇸 美国延迟优选", "🇸🇬 新加坡延迟优选", "🇯🇵 日本延迟优选", "🐸 手动选择","🎯 全球直连"] },
+      { "tag": "🚀 节点选择", "type": "selector", "outbounds": ["🇭🇰 香港延迟优选", "🇹🇼 台湾延迟优选", "🇺🇸 美国延迟优选", "🇸🇬 新加坡延迟优选", "🇯🇵 日本延迟优选", "🐸 手动切换","🎯 全球直连"] },
       { "tag": "📹 YouTube", "type": "selector", "outbounds": ["🚀 节点选择","🇭🇰 香港延迟优选","🇺🇸 美国延迟优选","🇯🇵 日本延迟优选" ] },
       { "tag": "🤖 OpenAI", "type": "selector", "outbounds": [ "🇺🇸 美国延迟优选","🇺🇲 美国节点","🇬🇧 英国节点"] },
       { "tag": "🍀 Google", "type": "selector", "outbounds": ["🚀 节点选择"] },
-      { "tag": "🪟 Microsoft", "type": "selector", "outbounds": ["🚀 节点选择", "🎯 全球直连","🐸 手动选择"] },
-      { "tag": "🎥 Netflix", "type": "selector", "outbounds": ["🇹🇼 台湾延迟优选","🇸🇬 新加坡延迟优选", "🐸 手动选择"] },
+      { "tag": "🪟 Microsoft", "type": "selector", "outbounds": ["🚀 节点选择", "🎯 全球直连","🐸 手动切换"] },
+      { "tag": "🎥 Netflix", "type": "selector", "outbounds": ["🇹🇼 台湾延迟优选","🇸🇬 新加坡延迟优选", "🐸 手动切换"] },
       { "tag": "🍏 Apple", "type": "selector", "outbounds": ["🎯 全球直连", "🇭🇰 香港节点", "🇯🇵 日本节点", "🇺🇲 美国节点"] },
       { "tag": "🎮 游戏平台", "type": "selector", "outbounds": ["🚀 节点选择","🇺🇲 美国节点","🇯🇵 日本节点","🇭🇰 香港节点","🎯 全球直连"]},
       { "tag": "🏳️‍🌈 国外服务", "type": "selector", "outbounds": ["🚀 节点选择","🎯 全球直连"]},
