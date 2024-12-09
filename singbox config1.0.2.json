@@ -133,7 +133,7 @@
         { "tag": "geosite-bilibili", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/bilibili.srs", "download_detour": "🎯 全球直连", "update_interval": "7d" },
         { "tag": "geosite-xhs", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/xiaohongshu.srs", "download_detour": "🎯 全球直连", "update_interval": "7d" },
         { "tag": "geosite-tencent", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/tencent.srs", "download_detour": "🎯 全球直连", "update_interval": "7d" },
-        { "tag": "geosite-nvdia", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/nvidia.srs", "download_detour": "🎯 全球直连", "update_interval": "7d" },
+        { "tag": "geosite-nvidia", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/nvidia.srs", "download_detour": "🎯 全球直连", "update_interval": "7d" },
        
        
        
