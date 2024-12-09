@@ -109,8 +109,7 @@
        {"rule_set": ["geoip-cn", "geosite-cn"], "outbound": "🎯 全球直连"}
      ],
       
-      "rule_set": [
-        { "tag": "geosite-bing", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/bing.srs", "download_detour": "🎯 全球直连", "update_interval": "7d" },        
+      "rule_set": [      
         { "tag": "geosite-ai", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ai-chat-!cn.srs", "download_detour": "🎯 全球直连", "update_interval": "7d" },
         { "tag": "geosite-pikpak", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/pikpak.srs", "download_detour": "🎯 全球直连", "update_interval": "7d" },
         { "tag": "geosite-youtube", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/youtube.srs", "download_detour": "🎯 全球直连", "update_interval": "7d" },
