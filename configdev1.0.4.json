@@ -68,10 +68,10 @@
   
     "outbounds": [
       { "tag": "🚀 节点选择", "type": "selector", "outbounds": ["🗺️ 地区选择","🗺️ 地区优选","🐸 手动切换","🎯 全球直连"] },
-      { "tag": "🗺️ 地区选择", "type": "selector", "outbounds": ["🇭🇰 香港节点","🇸🇬 新加坡节点","🇹🇼 台湾节点","🇯🇵 日本节点","🇺🇲 美国节点","🇬🇧 英国节点"] },
+      { "tag": "🗺️ 地区选择", "type": "selector", "outbounds": ["🇭🇰 香港节点","🇸🇬 新加坡节点","🇹🇼 台湾节点","🇯🇵 日本节点","🇺🇲 美国节点"] },
       { "tag": "🗺️ 地区优选", "type": "selector", "outbounds": ["🇭🇰 香港优选","🇸🇬 新加坡优选","🇹🇼 台湾优选","🇯🇵 日本优选","🇺🇸 美国优选"] },
       { "tag": "📹 YouTube", "type": "selector", "outbounds": ["🚀 节点选择","🇭🇰 香港优选","🇺🇸 美国优选","🇯🇵 日本优选"] },
-      { "tag": "🤖 OpenAI", "type": "selector", "outbounds": [ "🇺🇸 美国优选","🇺🇲 美国节点","🇬🇧 英国节点"] },
+      { "tag": "🤖 OpenAI", "type": "selector", "outbounds": [ "🇺🇸 美国优选","🇺🇲 美国节点"] },
       { "tag": "🍀 Google", "type": "selector", "outbounds": ["🚀 节点选择"] },
       { "tag": "🪟 Microsoft", "type": "selector", "outbounds": ["🚀 节点选择", "🎯 全球直连","🐸 手动切换"] },
       { "tag": "🎥 Netflix", "type": "selector", "outbounds": ["🇹🇼 台湾优选","🇸🇬 新加坡优选", "🐸 手动切换"] },
@@ -86,7 +86,6 @@
       { "tag": "🇹🇼 台湾节点", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇹🇼|台湾|Taiwan"] }] },
       { "tag": "🇯🇵 日本节点", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇯🇵|JP|jp|日本|Japan"] }] },
       { "tag": "🇺🇲 美国节点", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇺🇸|美国|美|United States"] }] },
-      { "tag": "🇬🇧 英国节点", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇬🇧|英国|United Kingdom"] }] },
       { "tag": "🇭🇰 香港优选", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇭🇰|HK|hk|香港|港|HongKong"] }], "url": "http://www.gstatic.com/generate_204", "interval": "10m", "tolerance": 50 },
       { "tag": "🇹🇼 台湾优选", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇹🇼|台湾|Taiwan"] }], "url": "http://www.gstatic.com/generate_204", "interval": "10m", "tolerance": 50 },
       { "tag": "🇺🇸 美国优选", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇺🇸|美国|美|United States"] }], "url": "http://www.gstatic.com/generate_204", "interval": "10m", "tolerance": 50 },
