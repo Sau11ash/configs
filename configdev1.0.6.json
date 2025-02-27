@@ -102,9 +102,6 @@
      [
        {"action": "sniff"},
        {"protocol": "dns", "action": "hijack-dns"},
-       {"clash_mode": "direct", "outbound": "🎯 全球直连"},
-       {"clash_mode": "global", "outbound": "GLOBAL"},
-
        {"rule_set": ["geosite-bank@cn","geosite-alibaba","geosite-bilibili","geosite-xhs","geosite-tencent","geosite-steam@cn","geosite-netdisk@cn"], "outbound": "🇨🇳 国内服务"},   
        {"rule_set": ["geosite-samsung"], "outbound": "✨ Samsung"},
        {"rule_set": ["geosite-telegram", "geoip-telegram","geosite-github","geosite-instagram","geosite-nvidia","geosite-X","geosite-spotify","geosite-jav"], "outbound": "🌐 国外服务"},
