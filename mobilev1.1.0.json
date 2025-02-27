@@ -96,7 +96,6 @@
     {"rule_set": ["geosite-samsung"], "outbound": "✨ Samsung"},
     {"rule_set": ["geosite-telegram", "geoip-telegram","geosite-github","geosite-instagram","geosite-X","geosite-spotify","geosite-jav"], "outbound": "🌐 国外服务"},
     {"rule_set": "geosite-pikpak", "outbound": "🇸🇬 新加坡优选"},
-    {"rule_set": "geosite-adobe", "action": "reject"},
     {"rule_set": "geosite-chat", "outbound": "🤖 OpenAI"},
     {"rule_set": "geosite-youtube", "outbound": "📹 YouTube"},
     {"rule_set": ["geosite-google", "geoip-google","geosite-fcm"], "outbound": "🍀 Google"},
