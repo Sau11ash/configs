@@ -1,6 +1,6 @@
 # 机场订阅，名称不能重复
 proxy-providers:
-  Linkcube:
+  Airport:
     type: http
     interval: 1800
     health-check:
@@ -8,7 +8,7 @@ proxy-providers:
       url: https://www.gstatic.com/generate_204
       interval: 300
     proxy: 🟢 直连
-    url: "https://api-linkcube.net/subscribe/pypwv-euw3ub4l"
+    url: ""
       
 # 用于下载订阅时指定UA
 global-ua: clash
