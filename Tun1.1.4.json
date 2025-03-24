@@ -30,8 +30,7 @@
    {"tag": "dns_proxy", "address": "https://dns.google/dns-query", "strategy": "ipv4_only", "detour": "🚀 节点选择"}
   ],
   "rules": 
-  [  
-    {"outbound": "any", "server": "dns_direct" ,"disable_cache":true},
+  [      
     {"rule_set": "geosite-cn", "server": "dns_direct"},
     {"rule_set": "geosite-geolocation-!cn", "server": "dns_proxy"},
     {"clash_mode": "Direct", "server": "dns_direct"},
