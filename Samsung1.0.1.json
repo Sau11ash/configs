@@ -17,6 +17,7 @@
         {"tag": "directDns", "address": "https://dns.alidns.com/dns-query", "address_strategy": "ipv4_only", "detour": "🎯 全球直连"}
       ],
       "rules": [
+        { "outbound": "any", "server": "directDns", "disable_cache": true },
         { "rule_set": "geosite-cn", "server": "directDns" },
         { "rule_set": "geosite-geolocation-!cn", "server": "proxyDns" },
         { "clash_mode": "direct", "server": "directDns" },
