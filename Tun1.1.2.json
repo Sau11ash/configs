@@ -32,10 +32,7 @@
   "rules": 
   [  
     {"rule_set": "geosite-cn", "server": "dns_direct"},
-    {"rule_set": "geosite-geolocation-!cn", "server": "dns_proxy"},
-    {"clash_mode": "Direct", "server": "dns_direct"},
-    {"clash_mode": "Global", "server": "dns_proxy"}
-
+    {"rule_set": "geosite-geolocation-!cn", "server": "dns_proxy"}
   ],
   "final": "dns_local",
   "strategy": "ipv4_only"
