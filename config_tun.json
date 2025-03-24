@@ -31,6 +31,7 @@
    ],
    "rules": 
    [
+     { "outbound": "any", "server": "dns_local", "disable_cache": true },       
      {"rule_set": "geosite-cn", "server": "dns_direct"},
      {"rule_set": "geosite-geolocation-!cn", "server": "dns_proxy"},
      {"clash_mode": "Direct", "server": "dns_direct"},
