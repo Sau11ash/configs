@@ -1,39 +1,39 @@
 {
   "log": {
-    "disabled": false,
-    "level": "info",
+    "disabled": false，
+    "level": "info"，
     "timestamp": true
-  },
+  }，
   
   "experimental": {
     "clash_api": {
-      "external_controller": "0.0.0.0:9095",
-      "external_ui": "/etc/sing-box/ui",
-      "secret": "",
-      "external_ui_download_url": "https://xlxmm.top/https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip",
-      "external_ui_download_detour": "🚀 节点选择",
+      "external_controller": "0.0.0.0:9095"，
+      "external_ui": "/etc/sing-box/ui"，
+      "secret": ""，
+      "external_ui_download_url": "https://xlxmm.top/https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"，
+      "external_ui_download_detour": "🚀 节点选择"，
       "default_mode": "rule"
-    },
+    }，
   "cache_file": {
-    "enabled": true,
-    "path": "/etc/sing-box/cache.db",
+    "enabled": true，
+    "path": "/etc/sing-box/cache.db"，
     "store_fakeip": false
     }
-  },
+  }，
 
  "dns": 
  {
    "servers": 
    [
-     {"tag": "dns_direct", "address": "https://doh.dnspod.cn/dns-query", "address_strategy": "ipv4_only", "strategy": "ipv4_only", "detour": "🎯 全球直连"},
-     {"tag": "dns_proxy", "address": "https://dns.google/dns-query", "address_strategy": "ipv4_only", "strategy": "ipv4_only", "detour": "🚀 节点选择"}
-     ],
+     {"tag": "dns_direct"， "address": "https://dns.alidns.com/dns-query"， "address_strategy": "ipv4_only"， "strategy": "ipv4_only"， "detour": "🎯 全球直连"}，
+     {"tag": "dns_proxy"， "address": "https://dns.google/dns-query"， "address_strategy": "ipv4_only"， "strategy": "ipv4_only"， "detour": "🚀 节点选择"}
+     ]，
    "rules":
    [
-     {"rule_set": "geosite-cn", "server": "dns_direct"},
-     {"rule_set": "geosite-geolocation-!cn", "server": "dns_proxy"},
-     {"clash_mode": "Direct", "server": "dns_direct"},
-     {"clash_mode": "Global", "server": "dns_proxy"}
+     {"rule_set": "geosite-cn"， "server": "dns_direct"}，
+     {"rule_set": "geosite-geolocation-!cn"， "server": "dns_proxy"}，
+     {"clash_mode": "Direct"， "server": "dns_direct"}，
+     {"clash_mode": "Global"， "server": "dns_proxy"}
 
    ],
    "final": "dns_direct",
