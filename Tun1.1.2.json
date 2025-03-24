@@ -25,8 +25,8 @@
  {
   "servers": 
   [
-   {"tag": "dns_local", "address": "223.5.5.5", "address_strategy": "ipv4_only", "strategy": "ipv4_only", "detour": "🎯 全球直连"},
-   {"tag": "dns_direct", "address": "223.5.5.5", "address_strategy": "ipv4_only", "strategy": "ipv4_only", "detour": "🎯 全球直连"}, 
+   {"tag": "dns_local", "address": "119.29.29.29", "address_strategy": "ipv4_only", "strategy": "ipv4_only", "detour": "🎯 全球直连"},
+   {"tag": "dns_direct", "address": "https://dns.alidns.com/dns-query", "address_strategy": "ipv4_only", "strategy": "ipv4_only", "detour": "🎯 全球直连"}, 
    {"tag": "dns_proxy", "address": "https://dns.google/dns-query", "address_resolver": "dns_local","address_strategy": "ipv4_only", "strategy": "ipv4_only", "detour": "🚀 节点选择"}
   ],
   "rules": 
