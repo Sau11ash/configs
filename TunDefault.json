@@ -26,14 +26,12 @@
     {
       "tag": "direct", 
       "address": "233.5.5.5", 
-      "address_resolver": "resolver", 
       "strategy": "ipv4_only",
       "detour": "Direct"
     },
     {
       "tag": "proxy", 
       "address": "tls://8.8.8.8", 
-      "address_resolver": "resolver", 
       "strategy": "ipv4_only",
       "detour": "🚀 Proxies"
     }
