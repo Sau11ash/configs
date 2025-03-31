@@ -25,8 +25,8 @@
   {
    "servers": 
    [
-    {"tag": "dns_direct", "server": "223.5.5.5", "strategy": "ipv4_only", "detour": "🎯 Direct"},
-    {"tag": "dns_proxy", "server": "tls://8.8.8.8", "strategy": "ipv4_only", "detour": "🚀 Proxies"}
+    {"tag": "dns_direct", "address": "223.5.5.5", "strategy": "ipv4_only", "detour": "🎯 Direct"},
+    {"tag": "dns_proxy", "address": "tls://8.8.8.8", "strategy": "ipv4_only", "detour": "🚀 Proxies"}
    ],
    "rules": 
    [  
