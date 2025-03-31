@@ -24,24 +24,26 @@
 "dns": {
   "servers": [
     {
-      "tag": "direct", 
+      "tag": "local", 
       "address": "233.5.5.5", 
+      "address_strategy": "ipv4_only",
       "strategy": "ipv4_only",
       "detour": "Direct"
     },
     {
       "tag": "proxy", 
-      "address": "8.8.8.8", 
+      "address": "tls://8.8.8.8", 
+      "address_strategy": "ipv4_only",
       "strategy": "ipv4_only",
       "detour": "🚀 Proxies"
     }
   ],
   "rules": [
-    {"outbound": "any", "server": "direct", "disable_cache": true},
+    {"outbound": "any", "server": "local", "disable_cache": true},
     {"rule_set": "geosite-cn", "server": "direct"},
     {"rule_set": "geosite-geolocation-!cn", "server": "proxy"}
   ],
-  "final": "direct"
+  "final": "proxy"
 },
 
 "inbounds": [
