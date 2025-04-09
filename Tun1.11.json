@@ -9,8 +9,7 @@
       "external_controller": "0.0.0.0:9095",
       "external_ui": "/etc/sing-box/ui",
       "secret": "",
-      "external_ui_download_url": "https://xlxmm.top/https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip",
-      "download_detour": "🚀 Proxies",
+      "external_ui_download_url": "https://xlxmm.top/https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
       "default_mode": "rule"
     },
     "cache_file": {
