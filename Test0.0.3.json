@@ -26,8 +26,7 @@
         "tag": "local",
         "type": "udp",
         "server": "223.5.5.5",
-        "server_port": 53,
-        "detour": "Direct-out"
+        "server_port": 53
       },
       {
         "tag": "AliDns",
@@ -84,8 +83,8 @@
   ],
   "outbounds": [
     {
-      "tag": "Direct-out-out",
-      "type": "Direct-out"
+      "tag": "Direct-out",
+      "type": "direct"
     },
     {
       "tag": "🚀 Proxies",
