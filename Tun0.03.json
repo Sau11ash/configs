@@ -23,7 +23,7 @@
       {
         "tag": "resolverDns",
         "address": "223.5.5.5",
-        "detour": "Direct"
+        "detour": "direct"
       },
       {
         "tag": "directDns",
@@ -35,7 +35,7 @@
       {
         "tag": "proxyDns",
         "address": "h3://dns.google/dns-query",
-        "address_resolver": "resolverDns",
+        "address_resolver": "directDns",
         "strategy": "ipv4_only",
         "detour": "🚀 Proxies"
       }
