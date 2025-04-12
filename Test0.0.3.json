@@ -32,14 +32,14 @@
       {
         "tag": "AliDns",
         "type": "h3",
-        "address": "h3://dns.alidns.com/dns-query",
+        "server": "h3://dns.alidns.com/dns-query",
         "server_port": 443,
         "detour": "Direct"
       },
       {
         "tag": "CloudflareDns",
         "type": "h3",
-        "address": "h3://dns.cloudflare.com/dns-query",
+        "server": "h3://dns.cloudflare.com/dns-query",
         "server_port": 443,
         "detour": "🚀 Proxies"
       }
