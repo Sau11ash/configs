@@ -33,7 +33,7 @@
         "type": "h3",
         "server": "dns.alidns.com",
         "server_port": 443,
-        "detour": "Direct-out"
+        "detour": "direct-out"
       },
       {
         "tag": "GoogleDns",
@@ -89,7 +89,7 @@
         "🗺️ Manual select",
         "🗺️ Auto select",
         "🐸 Singel Select",
-        "Direct-out"
+        "direct-out"
       ]
     },
     {
@@ -137,7 +137,7 @@
       "type": "selector",
       "outbounds": [
         "🗺️ Manual select",
-        "Direct-out"
+        "direct-out"
       ]
     },
     {
@@ -152,7 +152,7 @@
       "type": "selector",
       "outbounds": [
         "🚀 Proxies",
-        "Direct-out",
+        "direct-out",
         "🐸 Singel Select"
       ]
     },
@@ -173,7 +173,7 @@
         "🇺🇲 USA",
         "🇯🇵 Japan",
         "🇭🇰 HongKong",
-        "Direct-out"
+        "direct-out"
       ]
     },
     {
@@ -181,14 +181,14 @@
       "type": "selector",
       "outbounds": [
         "🚀 Proxies",
-        "Direct-out"
+        "direct-out"
       ]
     },
     {
       "tag": "🇨🇳 LAN",
       "type": "selector",
       "outbounds": [
-        "Direct-out"
+        "direct-out"
       ]
     },
     {
@@ -368,12 +368,12 @@
       "type": "selector",
       "outbounds": [
         "🚀 Proxies",
-        "Direct-out"
+        "direct-out"
       ]
     },
     {
       "type": "direct",
-      "tag": "Direct-out"
+      "tag": "direct-out"
       
     }
   ],
@@ -477,14 +477,14 @@
           "geosite-private",
           "geoip-private"
         ],
-        "outbound": "Direct-out"
+        "outbound": "direct-out"
       },
       {
         "rule_set": [
           "geoip-cn",
           "geosite-cn"
         ],
-        "outbound": "Direct-out"
+        "outbound": "direct-out"
       }
     ],
     "rule_set": [
@@ -493,266 +493,266 @@
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/apple-cn.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-samsung",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/samsung.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-bank@cn",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-bank-cn.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-alibaba",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/alibaba.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-bilibili",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/bilibili.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-xhs",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/xiaohongshu.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-tencent",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/tencent.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-netdisk@cn",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-netdisk-cn.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-rockstar",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/rockstar.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-jav",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/javdb.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-chat",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ai-!cn.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-youtube",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/youtube.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-google",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/google.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-github",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/github.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-telegram",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/telegram.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-instagram",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/instagram.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-nvidia",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/nvidia.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-netflix",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/netflix.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-apple@cn",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/apple@cn.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-microsoft",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/microsoft.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-onedrive",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/onedrive.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-steam",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/steam.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-steam@cn",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/steam@cn.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-ea",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/ea.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-X",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/x.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-spotify",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/spotify.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-pikpak",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/pikpak.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-fcm",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/googlefcm.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-geolocation-!cn",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/geolocation-!cn.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-cn",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-adobe",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/adobe.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geosite-private",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geoip-google",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/google.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geoip-telegram",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/telegram.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geoip-netflix",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/netflix.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geoip-apple",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo-lite/geoip/apple.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geoip-cn",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       },
       {
         "tag": "geoip-private",
         "type": "remote",
         "format": "binary",
         "url": "https://xlxmm.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/private.srs",
-        "download_detour": "Direct-out"
+        "download_detour": "direct-out"
       }
     ]
   }
