@@ -36,9 +36,9 @@
         "detour": "Direct-out"
       },
       {
-        "tag": "CloudflareDns",
+        "tag": "GoogleDns",
         "type": "h3",
-        "server": "h3://dns.cloudflare.com/dns-query",
+        "server": "h3://dns.google/dns-query",
         "server_port": 443,
         "detour": "🚀 Proxies"
       }
@@ -50,7 +50,7 @@
       },
       {
         "rule_set": "geosite-geolocation-!cn",
-        "server": "CloudflareDns"
+        "server": "GoogleDns"
       }
     ]
   },
