@@ -31,14 +31,14 @@
       {
         "tag": "AliDns",
         "type": "h3",
-        "server": "h3://dns.alidns.com/dns-query",
+        "server": "dns.alidns.com/dns-query",
         "server_port": 443,
         "detour": "Direct-out"
       },
       {
         "tag": "GoogleDns",
         "type": "h3",
-        "server": "h3://dns.google/dns-query",
+        "server": "dns.google/dns-query",
         "server_port": 443,
         "detour": "🚀 Proxies"
       }
