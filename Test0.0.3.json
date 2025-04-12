@@ -32,15 +32,13 @@
         "tag": "AliDns",
         "type": "h3",
         "server": "dns.alidns.com",
-        "server_port": 443,
-        "detour": "direct-out"
+        "server_port": 443
       },
       {
         "tag": "GoogleDns",
         "type": "h3",
         "server": "dns.google",
-        "server_port": 443,
-        "detour": "🚀 Proxies"
+        "server_port": 443
       }
     ],
     "rules": [
