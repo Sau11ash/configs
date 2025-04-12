@@ -83,10 +83,6 @@
   ],
   "outbounds": [
     {
-      "tag": "Direct-out",
-      "type": "direct"
-    },
-    {
       "tag": "🚀 Proxies",
       "type": "selector",
       "outbounds": [
@@ -374,6 +370,11 @@
         "🚀 Proxies",
         "Direct-out"
       ]
+    },
+    {
+      "type": "direct",
+      "tag": "Direct-out"
+      
     }
   ],
 "route": {
