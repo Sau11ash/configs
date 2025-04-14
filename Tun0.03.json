@@ -34,7 +34,7 @@
       },
       {
         "tag": "proxyDns",
-        "address": "h3://dns.google/dns-query",
+        "address": "h3://1.1.1.1/dns-query",
         "address_resolver": "AliDns",
         "strategy": "ipv4_only",
         "detour": "🚀 Proxies"
