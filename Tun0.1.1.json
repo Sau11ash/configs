@@ -117,6 +117,14 @@
       ]
     },
     {
+      "tag": "Pikpak",
+      "type": "selector",
+      "outbounds": [
+        "SG AUTO",
+        "direct-out"
+      ]
+    },
+    {
       "tag": "Youtube",
       "type": "selector",
       "outbounds": [
@@ -406,7 +414,7 @@
       },
       {
         "rule_set": "geosite-pikpak",
-        "outbound": "SG AUTO"
+        "outbound": "Pikpak"
       },
       {
         "rule_set": "geosite-samsung",
