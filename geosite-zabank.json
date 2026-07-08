@@ -1,0 +1,13 @@
+{
+  "version": 4,
+  "rules": [
+    {
+      "domain_suffix": [
+        "zainvest.group",
+        "za.group",
+        "zaticdn.com",
+        "zajourney.com"
+      ]
+    }
+  ]
+}

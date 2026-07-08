@@ -1,0 +1,34 @@
+{
+  "version": 4,
+  "rules": [
+    {
+      "domain_suffix": [
+        "hkt.com",
+        "hktchina.com",
+        "pccw.com",
+        "pccwone.com",
+        "1010.com.hk",
+        "hkcsl.com",
+        "netvigator.com",
+        "biznetvigator.com",
+        "like100.hk",
+        "hkt-eye.com",
+        "now.com",
+        "nowe.com",
+        "uhub.com",
+        "esmarthealth.com",
+        "hkteducation.com",
+        "hktfinancialservices.com",
+        "tapngo.com.hk",
+        "hktflexi.com",
+        "hktcare.com",
+        "hktshop.com",
+        "theclub.com.hk",
+        "clublike.com.hk",
+        "clubtravel.com.hk",
+        "clubhope.com.hk",
+        "clubsim.com.hk"
+      ]
+    }
+  ]
+}
