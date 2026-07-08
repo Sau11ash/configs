@@ -1,0 +1,11 @@
+payload:
+  - "+.medallia.com"
+  - "+.capitalone.com"
+  - "+.capitaloneoffers.com"
+  - "+.capitaloneshopping.com"
+  - "+.capitalonecareers.com"  
+  - "+.capitalonetravel.com"
+  - "mobile-collector.newrelic.com"
+  - "mobile-crash.newrelic.com"
+  - "mobile-collector.dualstack.nr-data.net"
+  - "mobile-crash.dualstack.nr-data.net"
