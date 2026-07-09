@@ -1,0 +1,14 @@
+{
+  "version": 4,
+  "rules": [
+    {
+      "domain_suffix": [
+        "t-mo.co",
+        "tmobile.com",
+        "t-mobile.com",
+        "mmsmvno.com",
+        "tello.com"
+      ]
+    }
+  ]
+}
