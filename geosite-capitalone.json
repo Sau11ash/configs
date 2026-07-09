@@ -1,0 +1,17 @@
+{
+  "version": 4,
+  "rules": [
+    {
+      "domain_suffix": [
+        "medallia.com",
+        "capitalone.com",
+        "capitaloneoffers.com",        
+        "capitalonetravel.com",
+        "capitalonecareers.com",
+        "capitaloneshopping.com",
+        "newrelic.com",
+        "nr-data.net"
+      ]
+    }
+  ]
+}
