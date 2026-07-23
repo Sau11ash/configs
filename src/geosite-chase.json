@@ -1,0 +1,23 @@
+{
+  "version": 4,
+  "rules": [
+    {
+      "domain_suffix": [
+        "jpmc.com",
+        "chase.com",
+        "chasecdn.com",
+        "referyourchasecard.com",
+        "jpmorgan.com",
+        "jpmchase.com",
+        "jpmorganonline.com",
+        "jpmorganchase.com",
+        "jpmorganmarkets.com",
+        "chasebenefits.com",
+        "chasecardbenefits.com",
+        "chasepay.com",
+        "chasepaymentech.com",
+        "chasetravel.com"
+      ]
+    }
+  ]
+}
