@@ -1,0 +1,12 @@
+{
+  "version": 4,
+  "rules": [
+    {
+      "domain_suffix": [
+        "equifax.com",
+        "efxus.dn.apigee.net",
+        "efxus-prod.apigee.net"
+      ]
+    }
+  ]
+}
