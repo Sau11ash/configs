@@ -1,0 +1,11 @@
+{
+  "version": 4,
+  "rules": [
+    {
+      "domain_suffix": [
+        "ups.com",
+        "ups-mi.net"
+      ]
+    }
+  ]
+}
