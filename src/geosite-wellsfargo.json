@@ -1,0 +1,15 @@
+{
+    "version": 4,
+    "rules": [
+        {
+            "domain_suffix": [
+                "wellsfargo.com",
+                "wf.com",
+                "wellsfargomedia.com",
+                "wfinterface.com",
+                "wellsfargoadvisors.com",
+                "wellsfargorewards.com"
+            ]
+        }
+    ]
+}
