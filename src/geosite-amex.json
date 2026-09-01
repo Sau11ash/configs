@@ -1,0 +1,19 @@
+{
+  "version": 4,
+  "rules": [
+    {
+      "domain_suffix": [
+        "americanexpress.com",
+        "aexp.com",
+        "aexp-static.com",
+        "amex",
+        "amex.co",
+        "amextravel.com",
+        "membershiprewards.com",
+        "americanexpressbusiness.com",
+        "amexgiftcard.com",
+        "aexpfeedback.com"
+      ]
+    }
+  ]
+}
