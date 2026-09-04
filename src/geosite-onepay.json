@@ -1,0 +1,18 @@
+{
+  "version": 5,
+  "rules": [
+    {
+      "domain_suffix": [
+        "onepay.com",
+        "one.app",
+        "onefinance.com",
+        "countr.one",
+        "oneatwork.app"
+      ],
+      "domain": [
+        "one.app.link",
+        "one-web.app.link"
+      ]
+    }
+  ]
+}
