@@ -1,0 +1,19 @@
+{
+  "version": 4,
+  "rules": [
+    {
+      "domain_suffix": [
+        "plasma.to",
+        "plasma-one.tech"
+      ],
+      "domain": [
+        "auth.privy.io",
+        "api.sumsub.com",
+
+        "tn4dlw.cdn-settings.appsflyersdk.com",
+        "tn4dlw.launches.appsflyersdk.com",
+        "tn4dlw.skadsdkless.appsflyersdk.com"
+      ]
+    }
+  ]
+}
