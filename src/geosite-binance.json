@@ -5,22 +5,23 @@
       "domain_suffix": [
         "binance.cc",
         "binance.charity",
+        "binance.click",
         "binance.cloud",
         "binance.co",
         "binance.com",
+        "binance.gg",
+        "binance.im",
         "binance.info",
         "binance.me",
         "binance.net",
         "binance.org",
         "binance.us",
         "binance.vision",
-        "binancecnt.com",
+
         "binanceapi.com",
-        "binanceru.net",
+        "binancecnt.com",
         "binancefuture.com",
-        "binance.click",
-        "binance.im",
-        "binance.gg",
+        "binanceru.net",
 
         "binancezh.be",
         "binancezh.biz",
@@ -38,14 +39,20 @@
         "binancezh.sh",
         "binancezh.top",
 
+        "bmwweb.solutions",
+        "bnappweb.black",
+        "bnappweb.blue",
+        "binancewv.com",
+
         "bnappzh.co",
         "bnappzh.com",
         "bnappzh.mobi",
-        "bnbzh.ac",
 
-        "bnbstatic.com",
         "bnbchain.org",
+        "bnbstatic.com",
+        "bnbzh.ac",
         "bntrace.com",
+
         "bsappapi.cc",
         "bsappapi.com",
         "bscdnweb.com",
@@ -57,27 +64,34 @@
         "saasexch.info",
         "saasexch.io",
 
-        "yingwangtech.cloud",
-        "yingwangtech.net",
-        "yingwangtech.mobi",
-        "yingwangtech.club",
         "yingwangtech.cc",
+        "yingwangtech.cloud",
+        "yingwangtech.club",
+        "yingwangtech.mobi",
+        "yingwangtech.net",
 
+        "qa1fdg.net",
+        "toolsfdg.net",
+        "coinlive.club",
         "yshyqxx.com",
 
-        "bmwweb.solutions"
-      ],
+        "bscdnweb.com.w.cdngslb.com",
+        "binance.info.cdn.cloudflare.net"
+      ]
+    },
+    {
       "domain": [
         "zftksc.cdn-settings.appsflyersdk.com",
         "zftksc.launches.appsflyersdk.com",
-
-        "data-collect.toolsfdg.net",
-        "liveplay.coinlive.club",
-        "fstream.qa1fdg.net",
+        "zftksc.skadsdkless.appsflyersdk.com",
 
         "m.api.forter.com",
         "addfd325e6e3.cdn4.forter.com",
+        "25fa5990-320a-4b5c-a2a8-e28ef50fd285-addfd325e6e3.cdn.forter.com",
         "b2d8207c-e08a-45cd-bc97-268da85016d2-addfd325e6e3.cdn.forter.com",
+
+        "o529943.ingest.sentry.io",
+        "o529943.ingest.us.sentry.io",
 
         "public-1306379396.file.myqcloud.com",
         "static-file-1306379396.file.myqcloud.com",
@@ -90,20 +104,24 @@
         "tf-bin-prod-referral-kol-userupload-tmp.s3.ap-northeast-1.amazonaws.com",
 
         "d3sknckuh1o9tg.cloudfront.net",
+        "d12i2zm7u2yrod.cloudfront.net",
 
         "bin-prod-new-websocket-alb-1463526464.ap-northeast-1.elb.amazonaws.com",
-        "aad90d5c0e88c4b4285bd912f64d970d-1403944741.ap-northeast-1.elb.amazonaws.com"
+        "aad90d5c0e88c4b4285bd912f64d970d-1403944741.ap-northeast-1.elb.amazonaws.com",
+        "a189db44b87dd4591b71b2079de2467d-1592143676.ap-northeast-1.elb.amazonaws.com",
+
+        "futures-delivery-prod-dstreamg-1858630782.ap-northeast-1.elb.amazonaws.com",
+        "futures-prod-wsp-albg-2015515757.ap-northeast-1.elb.amazonaws.com",
+
+        "tf-bin-prod-new-websocket1-alb-553992169.ap-northeast-1.elb.amazonaws.com",
+        "tf-bin-prod-new-websocket3-alb-1874341017.ap-northeast-1.elb.amazonaws.com",
+
+        "fmbxlntehddr.oss-cn-shenzhen.aliyuncs.com"
       ]
     },
     {
       "ip_cidr": [
-        "47.107.98.27/32",
-        "47.107.127.135/32",
-        "52.68.117.1/32",
-        "35.77.148.188/32",
-        "54.150.106.1/32",
-        "13.248.135.87/32",
-        "47.107.32.31/32"
+        "120.24.233.110/32"
       ]
     }
   ]
