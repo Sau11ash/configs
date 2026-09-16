@@ -1,0 +1,110 @@
+{
+  "version": 5,
+  "rules": [
+    {
+      "domain_suffix": [
+        "binance.cc",
+        "binance.charity",
+        "binance.cloud",
+        "binance.co",
+        "binance.com",
+        "binance.info",
+        "binance.me",
+        "binance.net",
+        "binance.org",
+        "binance.us",
+        "binance.vision",
+        "binancecnt.com",
+        "binanceapi.com",
+        "binanceru.net",
+        "binancefuture.com",
+        "binance.click",
+        "binance.im",
+        "binance.gg",
+
+        "binancezh.be",
+        "binancezh.biz",
+        "binancezh.cc",
+        "binancezh.co",
+        "binancezh.com",
+        "binancezh.info",
+        "binancezh.ink",
+        "binancezh.kim",
+        "binancezh.link",
+        "binancezh.live",
+        "binancezh.mobi",
+        "binancezh.net",
+        "binancezh.pro",
+        "binancezh.sh",
+        "binancezh.top",
+
+        "bnappzh.co",
+        "bnappzh.com",
+        "bnappzh.mobi",
+        "bnbzh.ac",
+
+        "bnbstatic.com",
+        "bnbchain.org",
+        "bntrace.com",
+        "bsappapi.cc",
+        "bsappapi.com",
+        "bscdnweb.com",
+        "nftstatic.com",
+
+        "saasexch.cc",
+        "saasexch.co",
+        "saasexch.com",
+        "saasexch.info",
+        "saasexch.io",
+
+        "yingwangtech.cloud",
+        "yingwangtech.net",
+        "yingwangtech.mobi",
+        "yingwangtech.club",
+        "yingwangtech.cc",
+
+        "yshyqxx.com",
+
+        "bmwweb.solutions"
+      ],
+      "domain": [
+        "zftksc.cdn-settings.appsflyersdk.com",
+        "zftksc.launches.appsflyersdk.com",
+
+        "data-collect.toolsfdg.net",
+        "liveplay.coinlive.club",
+        "fstream.qa1fdg.net",
+
+        "m.api.forter.com",
+        "addfd325e6e3.cdn4.forter.com",
+        "b2d8207c-e08a-45cd-bc97-268da85016d2-addfd325e6e3.cdn.forter.com",
+
+        "public-1306379396.file.myqcloud.com",
+        "static-file-1306379396.file.myqcloud.com",
+        "domain-config-1306379396.file.myqcloud.com",
+        "public-1259603563.file.myqcloud.com",
+        "static-file-1259603563.file.myqcloud.com",
+
+        "upload-bnbstatic-com.s3.ap-northeast-1.amazonaws.com",
+        "public-nftstatic-com.s3.ap-northeast-1.amazonaws.com",
+        "tf-bin-prod-referral-kol-userupload-tmp.s3.ap-northeast-1.amazonaws.com",
+
+        "d3sknckuh1o9tg.cloudfront.net",
+
+        "bin-prod-new-websocket-alb-1463526464.ap-northeast-1.elb.amazonaws.com",
+        "aad90d5c0e88c4b4285bd912f64d970d-1403944741.ap-northeast-1.elb.amazonaws.com"
+      ]
+    },
+    {
+      "ip_cidr": [
+        "47.107.98.27/32",
+        "47.107.127.135/32",
+        "52.68.117.1/32",
+        "35.77.148.188/32",
+        "54.150.106.1/32",
+        "13.248.135.87/32",
+        "47.107.32.31/32"
+      ]
+    }
+  ]
+}
